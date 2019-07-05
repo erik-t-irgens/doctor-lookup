@@ -10,6 +10,7 @@ $(document).ready(function() {
   $("#userForm").submit(function(event){
 
     let doctorName = $("#doctorName").val();
+
     let doctorFirstName;
     let doctorMiddleName;
     let doctorLastName;
@@ -35,8 +36,8 @@ $(document).ready(function() {
 
 
     let symptomsString = $("#symptoms").val();
-    let symptoms = [];
-    let symptomsSearch = "";
+    let symptoms;
+    let symptomsSearch;
 
     if (symptomsString.includes(" ") === true){
       symptoms = symptomsString.split(" ");
@@ -48,17 +49,17 @@ $(document).ready(function() {
     }
 
     let doctorGender = $("#doctorGender").children("option:selected").val();
-    let sorter = ;
-    let resultLimit = ;
+    let sorter = $("#sorter").children("option:selected").val();
+    let resultLimit = parseInt($("#resultLimit").val());
 
-    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?name=${doctorSearchName}&query=test&gender=male&sort=full-name-asc&skip=0&limit=10&user_key=36e0dc0a20d11c7bcdb9f197dc18371e`)
-
-
+    console.log(`https://api.betterdoctor.com/2016-03-01/doctors?name=${doctorSearchName}&query=${symptomsSearch}&gender=${doctorGender}&sort=${sorter}&skip=0&limit=${resultLimit}&user_key=${process.env.exports.apiKey}`);
 
 
-
-
-
+    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?name=${doctorSearchName}&query=${symptomsSearch}&gender=${doctorGender}&sort=${sorter}&skip=0&limit=${resultLimit}&user_key=${process.env.exports.apiKey}`).then(function(response){
+      console.log(response);
+    }).fail(function(error){
+      console.log("Error!");
+    });
 
 
     event.preventDefault();
