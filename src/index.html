@@ -2,10 +2,69 @@
 <html>
   <head>
 
-    <title></title>
+    <title>Doctor Lookup</title>
   </head>
   <body>
+    <div class="container-fluid" id="mainContainer">
 
 
+      <div class="card bg-info" id="introCard">
+        <div class="card-header">
+          Welcome!
+        </div>
+        <div class="card-body">
+          <p>Below, you may search for a doctor that best meets your needs. You may search by their name, or by your symptoms. You may also specify which gender you'd prefer your doctor to be when searching!</p>
+        </div>
+      </div>
+
+      <div class="card bg-dark" id="formCard">
+        <div class="card-header">
+          Search Here
+        </div>
+        <div class="card-body">
+          <form id="userForm" action="index.html" method="post">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="doctorName">Doctor's Name:</label>
+                <input type="text" name="doctorName" id="doctorName" aria-describedby="doctorNameHelp" placeholder="Enter doctor's name">
+              </div>
+              <div class="col-md-6">
+                <label for="symptoms">Your symptoms:</label>
+                <input type="text" name="symptoms" id="symptoms" aria-describedby="symptoms" placeholder="Enter your symptoms">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="doctorGender">Preferred gender for doctor:</label>
+                <select class="form-control form-control-lg" id="doctorGender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="sorting">Sort results by:</label>
+                <select class="form-control form-control-lg" id="sorter">
+                  <option value="best-match-asc">Best match: Ascending</option>
+                  <option value="best-match-desc">Best match: Descending</option>
+                  <option value="rating-asc">By rating: Ascending</option>
+                  <option value="rating-desc">By rating: Descending</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+
+              </div>
+            </div>
+            <button type="submit" name="search">Search!</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
   </body>
 </html>
+<!-- <div class="alert alert-info" role="alert">
+  Check this out
+
+</div> -->
