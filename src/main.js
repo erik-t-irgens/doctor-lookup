@@ -68,34 +68,42 @@ console.log(`https://api.betterdoctor.com/2016-03-01/doctors?name=${doctorSearch
       } else if (response.data.length > 0){
         $("#resultArea").append("<div class='alert alert-success' role='alert'>Below are your results</div>");
         for (var i = 0; i < response.data.length; i++) {
-          $("#resultArea").append("<div class='card bg-primary resultantCard'><div class='card-header'><h3>"
-          + response.data[i].profile.first_name
-          + " "
-          + response.data[i].profile.last_name + "</h3></div><div class='card-body'>"
-          + "<img src='" + response.data[i].profile.image_url
-          + "' alt='A picture of "
-          + response.data[i].profile.first_name
-          + " "
-          + response.data[i].profile.last_name
-          + "'><p>" + response.data[i].profile.bio
-          + "</p></div>");
+          $("#resultArea").append("<div class='card bg-info resultantCard'><div class='card-header'id='" + "cardNumber"+ i + "'<h3>" + response.data[i].profile.first_name + " " + response.data[i].profile.last_name + "</h3></div><div class='card-body' id='" + "cardBody" + i + "'><img src='" + response.data[i].profile.image_url + "' alt='A picture of " + response.data[i].profile.first_name + " " + response.data[i].profile.last_name + "'><p>Bio: " + response.data[i].profile.bio + "</p></div><hr>");
 
-          console.log(response.data[i].profile.img_url);
+          if (response.data[i].practices.length > 0){
+            if (response.data[i].practices[0].phones.length > 0){
+              $("#cardBody" + i).append(`<p>Phone: ${response.data[i].practices[0].phones[0].number} </p><hr>`);
+            }
+          }
 
+          if (response.data[i].practices.length > 0){
+            $("#cardBody" + i).append(`<p>Address: ${response.data[i].practices[0].visit_address.street},   ${response.data[i].practices[0].visit_address.city}  ${response.data[i].practices[0].visit_address.state}</p>`);
+          }
 
+          if (response.data[i].practices.length > 0 && response.data[i].practices[0].website){
+            $("#cardBody" + i).append(`<p>Website: </p><a href="${response.data[i].practices[0].website}">${response.data[i].practices[0].website}</a>`);
+          }
+
+          if (response.data[i].practices.length > 0 && response.data[i].practices[0].accepts_new_patients){
+            if (response.data[i].practices[0].accepts_new_patients === true) {
+              $("#cardBody" + i).append(`<p class="emphatic">This doctor is currently accepting new patients.</p>`);
+            } else if (response.data[i].practices[0].accepts_new_patients === false) {
+              $("#cardBody" + i).append(`<p>This doctor is currently NOT accepting new patients.</p>`);
+            }
+          }
+
+          $("#cardBody" + i).hide();
+          $("#cardBody" + i).slideDown(2000);
         }
         $("#resultArea").slideDown(2000);
       }
 
 
-
-
       console.log(response);
     }).fail(function(error){
+      $("#resultArea").append("<div class='alert alert-danger' role='alert'>There was an error processing your request. Make sure you fill in either a symptom, a name, or both!</div>" + "<p> Error Number: 400</p>");
+      $("#resultArea").slideDown();
       console.log("Error!");
-
-
-
     });
 
 
