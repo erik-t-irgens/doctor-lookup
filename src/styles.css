@@ -1,4 +1,10 @@
 /*  Styles! */
+#blankFiller {
+  height: 33vh;
+}
+
+
+
 #resultArea {
   display: none;
   align-items: center;
@@ -8,6 +14,10 @@
 
 }
 
+#introHeader {
+  font-size: 40px;
+}
+
 #introCard, #userForm {
   color: white;
   text-align: center;
@@ -15,13 +25,15 @@
   font-size: 20px;
   margin-bottom: 10px;
   margin-top: 10px;
-  width: 50vw;
-  margin-right: 25%;
-  margin-left: 25%;
+  font-family: 'DM Sans', sans-serif;
+  display: none;
 }
 
-#sorter, #doctorGender {
 
+#sorter, #doctorGender, #symptoms, #doctorName, #resultLimit {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #submitButton {
@@ -30,18 +42,37 @@
 
 .resultantCard {
   margin-bottom: 5px;
-  width: 50vw;
-  margin-right: 25%;
-  margin-left: 25%;
+  width: 44vw;
+  margin-right: 28%;
+  margin-left: 28%;
+  font-family: 'DM Sans', sans-serif;
+
 }
 
 .emphatic {
   text-decoration: underline;
+  color: green;
+  text-shadow: 0px 0px 0px;
+}
+
+.emphaticBad {
+  text-decoration: underline;
+  color: red;
+  text-shadow: 0px 0px 0px;
 }
 
 .card-header {
   font-weight: bold;
   text-align: center;
   color: white;
+  font-family: 'DM Serif Text', serif;
 
+}
+
+#formCard {
+  width: 85vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: none;
 }

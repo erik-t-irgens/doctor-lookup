@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans|DM+Serif+Text&display=swap" rel="stylesheet">
     <title>Doctor Lookup</title>
   </head>
   <body>
     <div class="container-fluid" id="mainContainer">
 
+      <div id="blankFiller">
 
-      <div class="card bg-info" id="introCard">
-        <div class="card-header">
+      </div>
+
+      <div class="card bg-secondary" id="introCard">
+        <div class="card-header" id="introHeader">
           Welcome!
         </div>
         <div class="card-body">
           <p>Below, you may search for a doctor that best meets your needs. You may search by their name, or by your symptoms. You may also specify which gender you'd prefer your doctor to be when searching!</p>
         </div>
-      </div>
 
-      <div class="card bg-dark" id="formCard">
+
+      <div class="card bg-dark border-success" id="formCard">
         <div class="card-header">
           Search Here
         </div>
@@ -25,14 +28,14 @@
           <form id="userForm" action="index.html" method="post">
             <div class="row">
               <div class="col-md-6">
-                <label for="doctorName">Doctor's Name:</label>
+                <label for="doctorName">Doctor's Name:</label><br>
                 <input type="text" name="doctorName" id="doctorName" aria-describedby="doctorNameHelp" placeholder="Enter doctor's name">
-                <hr>
+
               </div>
               <div class="col-md-6">
-                <label for="symptoms">Your symptoms:</label>
+                <label for="symptoms">Your symptoms:</label><br>
                 <input type="text" name="symptoms" id="symptoms" aria-describedby="symptoms" placeholder="Enter your symptoms">
-                <hr>
+
               </div>
             </div>
             <div class="row">
@@ -42,7 +45,7 @@
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
-                <hr>
+
               </div>
               <div class="col-md-6">
                 <label for="sorting">Sort results by:</label>
@@ -52,13 +55,13 @@
                   <option value="rating-asc">By rating: Ascending</option>
                   <option value="rating-desc">By rating: Descending</option>
                 </select>
-                <hr>
+
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <label for="resultLimit">Result limit: (1-10)</label>
-                <input type="number" min="1" max="10" value="5" name="resultLimit" id="resultLimit" placeholder="Input results limit">
+                <label for="resultLimit" id="resultLimitUpdate"> </label><br>
+                <input type="range" min="1" max="10" value="5" step="1" class="slider" name="resultLimit" id="resultLimit" placeholder="Input results limit">
               </div>
             </div>
             <button type="submit" class="btn btn-lg btn-outline-success" id="submitButton" name="search">Search!</button>
@@ -68,10 +71,10 @@
 
 
       <div id="resultArea">
-      
+
 
       </div>
-
+</div>
     </div>
   </body>
 </html>
