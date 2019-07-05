@@ -20,10 +20,10 @@ _Users will be prompted to input a doctor's name (if they know it), a symptom th
 
 ## Setup/Installation Requirements
 
-* _Clone down the repository from https://github.com/erik-t-irgens/doctor_lookup. _
+* _Clone down the repository from https://github.com/erik-t-irgens/doctor-lookup. _
 * _Initialize npm, and run npm install to install all packages. _
 * _Run "npm run start" to view the website. _
-* _Or visit the live site at https://erik-t-irgens.github.io/doctor_lookup_
+* _Or visit the live site at https://erik-t-irgens.github.io/doctor-lookup_
 
 
 
