@@ -1,1 +1,35 @@
 /*  Styles! */
+#resultArea {
+  display: none;
+  align-items: center;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+#introCard, #userForm {
+  color: white;
+  text-align: center;
+  text-shadow: 1px 1px 1px gray;
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 50vw;
+  margin-right: 25%;
+  margin-left: 25%;
+}
+
+#sorter, #doctorGender {
+
+}
+
+#submitButton {
+  width: 100% !important;
+}
+
+.resultantCard {
+  margin-bottom: 5px;
+  width: 50vw;
+  margin-right: 25%;
+  margin-left: 25%;
+}

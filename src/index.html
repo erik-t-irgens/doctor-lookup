@@ -27,44 +27,48 @@
               <div class="col-md-6">
                 <label for="doctorName">Doctor's Name:</label>
                 <input type="text" name="doctorName" id="doctorName" aria-describedby="doctorNameHelp" placeholder="Enter doctor's name">
+                <hr>
               </div>
               <div class="col-md-6">
                 <label for="symptoms">Your symptoms:</label>
                 <input type="text" name="symptoms" id="symptoms" aria-describedby="symptoms" placeholder="Enter your symptoms">
+                <hr>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                 <label for="doctorGender">Preferred gender for doctor:</label>
-                <select class="form-control form-control-lg" id="doctorGender">
+                <select class="form-control form-control-md" id="doctorGender">
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
+                <hr>
               </div>
               <div class="col-md-6">
                 <label for="sorting">Sort results by:</label>
-                <select class="form-control form-control-lg" id="sorter">
+                <select class="form-control form-control-md" id="sorter">
                   <option value="best-match-asc">Best match: Ascending</option>
                   <option value="best-match-desc">Best match: Descending</option>
                   <option value="rating-asc">By rating: Ascending</option>
                   <option value="rating-desc">By rating: Descending</option>
                 </select>
+                <hr>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <label for="resultLimit">Result limit:</label>
-                <input type="number" min="1" max="100" name="resultLimit" id="resultLimit" placeholder="Input results limit">
+                <label for="resultLimit">Result limit: (1-10)</label>
+                <input type="number" min="1" max="10" value="5" name="resultLimit" id="resultLimit" placeholder="Input results limit">
               </div>
             </div>
-            <button type="submit" name="search">Search!</button>
+            <button type="submit" class="btn btn-lg btn-outline-success" id="submitButton" name="search">Search!</button>
           </form>
         </div>
       </div>
 
 
       <div id="resultArea">
-
+      
 
       </div>
 

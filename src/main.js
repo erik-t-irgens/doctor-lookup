@@ -31,7 +31,9 @@ $(document).ready(function() {
         doctorSearchName = (doctorFirstName + "%20" + doctorMiddleName + "%20" + doctorLastName)
         }
       } else if (doctorName.includes(" ") === false){
-        doctorSearchName = doctorName;
+        doctorSearchName =  doctorName;
+      } else if (doctorName === ""){
+        doctrSearchName = "";
       }
 
 
@@ -52,14 +54,50 @@ $(document).ready(function() {
     let sorter = $("#sorter").children("option:selected").val();
     let resultLimit = parseInt($("#resultLimit").val());
 
-    console.log(`https://api.betterdoctor.com/2016-03-01/doctors?name=${doctorSearchName}&query=${symptomsSearch}&gender=${doctorGender}&sort=${sorter}&skip=0&limit=${resultLimit}&user_key=${process.env.exports.apiKey}`);
 
+    $("#resultArea").slideUp();
+    $("#resultArea").html("");
+
+console.log(`https://api.betterdoctor.com/2016-03-01/doctors?name=${doctorSearchName}&query=${symptomsSearch}&gender=${doctorGender}&sort=${sorter}&skip=0&limit=${resultLimit}&user_key=${process.env.exports.apiKey}`);
 
     $.get(`https://api.betterdoctor.com/2016-03-01/doctors?name=${doctorSearchName}&query=${symptomsSearch}&gender=${doctorGender}&sort=${sorter}&skip=0&limit=${resultLimit}&user_key=${process.env.exports.apiKey}`).then(function(response){
+
+
+      if (response.data.length === 0){
+        $("#resultArea").html("<div class='alert alert-warning' role='alert'>Search provided no results. Try changing your search criteria! (Change the name, or your symptom!)</div>").slideDown(2000);
+      } else if (response.data.length > 0){
+        $("#resultArea").append("<div class='alert alert-success' role='alert'>Below are your results</div>");
+        for (var i = 0; i < response.data.length; i++) {
+          $("#resultArea").append("<div class='card bg-primary resultantCard'><div class='card-header'><h3>"
+          + response.data[i].profile.first_name
+          + " "
+          + response.data[i].profile.last_name + "</h3></div><div class='card-body'>"
+          + "<img src='" + response.data[i].profile.image_url
+          + "' alt='A picture of "
+          + response.data[i].profile.first_name
+          + " "
+          + response.data[i].profile.last_name
+          + "'><p>" + response.data[i].profile.bio
+          + "</p></div>");
+
+          console.log(response.data[i].profile.img_url);
+
+
+        }
+        $("#resultArea").slideDown(2000);
+      }
+
+
+
+
       console.log(response);
     }).fail(function(error){
       console.log("Error!");
+
+
+
     });
+
 
 
     event.preventDefault();
