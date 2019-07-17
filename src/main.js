@@ -3,6 +3,7 @@ import './styles.css';
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { GetAPI, formatDoctorName, formatSymptoms } from "./doctor-lookup.js";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -33,48 +34,12 @@ setInterval(function(){
 
     let doctorName = $("#doctorName").val();
 
-    let doctorFirstName;
-    let doctorMiddleName;
-    let doctorLastName;
-    let doctorSearchName;
 
-// if function to determine whether or not user input more than 1 name.
-
-    if (doctorName.includes(" ")  === true){
-      if (doctorName.split(" ").length === 2) {
-        let doctorNameArray = doctorName.split(" ");
-        doctorFirstName = doctorNameArray[0];
-        doctorLastName = doctorNameArray[1];
-        doctorMiddleName = "";
-        doctorSearchName = (doctorFirstName + "%20" + doctorLastName)
-        } else if (doctorName.split(" ").length === 3) {
-        let doctorNameArray = doctorName.split(" ");
-        doctorFirstName = doctorNameArray[0];
-        doctorMiddleName = doctorNameArray[1];
-        doctorLastName = doctorName[2];
-        doctorSearchName = (doctorFirstName + "%20" + doctorMiddleName + "%20" + doctorLastName)
-        }
-      } else if (doctorName.includes(" ") === false){
-        doctorSearchName =  doctorName;
-      } else if (doctorName === ""){
-        doctrSearchName = "";
-      }
-
+    let doctorSearchName = formatDoctorName(doctorName);
 
     let symptomsString = $("#symptoms").val();
-    let symptoms;
-    let symptomsSearch;
 
-// Counts if user input multiple symptoms!
-
-    if (symptomsString.includes(" ") === true){
-      symptoms = symptomsString.split(" ");
-      for (var i = 0; i < symptoms.length; i++) {
-        symptomsSearch += symptoms[i] + "%20"
-      }
-    } else if (symptomsString.includes(" ") === false){
-      symptomsSearch = symptomsString;
-    }
+    let symptomsSearch = formatSymptoms(symptomsString);
 
     let doctorGender = $("#doctorGender").children("option:selected").val();
     let sorter = $("#sorter").children("option:selected").val();
@@ -86,7 +51,7 @@ setInterval(function(){
 
 console.log(`https://api.betterdoctor.com/2016-03-01/doctors?name=${doctorSearchName}&query=${symptomsSearch}&gender=${doctorGender}&sort=${sorter}&skip=0&limit=${resultLimit}&user_key=${process.env.exports.apiKey}`);
 
-    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?name=${doctorSearchName}&query=${symptomsSearch}&gender=${doctorGender}&sort=${sorter}&skip=0&limit=${resultLimit}&user_key=${process.env.exports.apiKey}`).then(function(response){
+    GetAPI(doctorSearchName, symptomsSearch, doctorGender, sorter, resultLimit).then(function(response){
 
       if (response.data.length === 0){
         $("#resultArea").html("<div class='alert alert-warning' role='alert'>Search provided no results. Try changing your search criteria! (Change the name, or your symptom!)</div>").slideDown(2000);
