@@ -1,4 +1,4 @@
-# _Super Galactic Age Calculator_
+# _DOCTOR LOOKUP_
 
 #### _Takes user input, either in the form of Doctor's name or user symptom, and provides a list of relevant search results in the form of doctors._
 
